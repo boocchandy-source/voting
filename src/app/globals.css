@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Michroma", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html,
+body {
+  background: #060606;
+  color: #fff;
+  font-family: var(--font-sans);
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* hide scrollbars site-wide — scrolling still works */
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* metallic gray for VOTING */
+.text-metallic {
+  background: linear-gradient(180deg, #d7dbe0 0%, #9aa0a8 45%, #6b7078 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* thin hero rule */
+.hero-rule {
+  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.9) 55%, rgba(255,255,255,0) 100%);
+}
+
+/* footer wedge */
+.footer-wedge {
+  clip-path: polygon(0 42%, 100% 0%, 100% 100%, 0% 100%);
+}
+.footer-wedge-line {
+  clip-path: polygon(0 42%, 100% 0%, 100% 6%, 0 48%);
+}

@@ -1,0 +1,35 @@
+# Render blueprint: Next.js web service + PostgreSQL.
+# NOTE: build uses `npx next build` (webpack). Do NOT switch it to the
+# repo's `npm run build` (turbopack) — `next start` cannot serve a
+# turbopack build and will crash on boot.
+databases:
+  - name: tcc-postgres
+    databaseName: voting
+    user: tcc
+    plan: free
+
+services:
+  - type: web
+    name: tcc-voting
+    runtime: node
+    plan: free
+    buildCommand: npm install && npx next build
+    startCommand: npm run start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.2
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tcc-postgres
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+
+# ── After first deploy, run ONCE against the Render database ──
+# (use the External Database URL from the Render dashboard):
+#   DATABASE_URL="<external-url>" npm run db:push
+#   DATABASE_URL="<external-url>" npm run db:seed
+# Seed logins (change passwords after first sign-in):
+#   student  00005050 / student123
+#   admin    admin    / admin123

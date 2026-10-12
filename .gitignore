@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# env files (NEVER commit real credentials — Render provides these)
+.env*
+!.env.example
+
+# drizzle migrations output keeps local dev history; keep schema in git
+# drizzle/
+
+# misc
+*.log
+.DS_Store
